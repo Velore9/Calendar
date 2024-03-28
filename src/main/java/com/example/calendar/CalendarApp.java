@@ -19,7 +19,6 @@ public class CalendarApp extends Application {
 
     private LocalDate currentDate;
     private Label monthLabel;
-    //hello
 
 
     @Override

@@ -17,9 +17,8 @@ import java.time.format.DateTimeFormatter;
 
 public class CalendarApp extends Application {
 
-    private LocalDate currentDate;
+    private LocalDate currentDate; // to open up in the current month
     private Label monthLabel;
-    //hello
 
 
     @Override
@@ -47,21 +46,20 @@ public class CalendarApp extends Application {
             populateCalendar(root);
         });
 
-        navigationPane.getChildren().addAll(prevButton, nextButton);
+        navigationPane.getChildren().addAll(prevButton, nextButton); // put the info the buttons with the styling of the Hbox
 
         // Create month label
         monthLabel = new Label();
-        monthLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-        updateCalendar();
-        populateCalendar(root);
+        monthLabel.setStyle("-fx-font-size: 30px; -fx-font-weight: bold;");
+        /*updateCalendar();
+        populateCalendar(root);*/
 
-        // Create calendar grid panes for each date
         GridPane calendarPane = new GridPane();
         calendarPane.setAlignment(Pos.CENTER);
         calendarPane.setHgap(10);
         calendarPane.setVgap(10);
-        updateCalendar();
-        populateCalendar(root);
+        /*updateCalendar();
+        populateCalendar(root);*/
 
         // Add components to root pane. For GUI purposes
         root.setTop(monthLabel);
@@ -80,39 +78,39 @@ public class CalendarApp extends Application {
         populateCalendar(root);
     }
 
-    private void updateCalendar() {
+    private void updateCalendar() { // whenever u go to next month and then sets the month
         monthLabel.setText(currentDate.getMonth().toString() + " " + currentDate.getYear());
     }
 
     private void populateCalendar(BorderPane root) {
         GridPane calendarPane = new GridPane();
         calendarPane.setAlignment(Pos.CENTER);
-        calendarPane.setHgap(10);
-        calendarPane.setVgap(10);
+        /*calendarPane.setHgap(10); maybe i dont need gaps i think it looks cooler
+        calendarPane.setVgap(10);*/
 
         String[] daysOfWeek = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-        for (int i = 0; i < daysOfWeek.length; i++) {
+        for (int i = 0; i < daysOfWeek.length; i++) { // for adding days of week on top
             Label dayLabel = new Label(daysOfWeek[i]);
             dayLabel.setStyle("-fx-font-weight: bold;");
             calendarPane.add(dayLabel, i, 0);
         }
 
         LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
-        int startColumn = firstDayOfMonth.getDayOfWeek().getValue() % 7;
+        int startColumn = firstDayOfMonth.getDayOfWeek().getValue() % 7; // find out what day of the week the month starts in, by finding remainder then sets the column to align at the designated day of the week
 
         int dayOfMonth = 1;
         int row = 1;
-        for (int col = startColumn; col < 7; col++) {
+        for (int col = startColumn; col < 7; col++) { // for very first week due to it not being a full column (most of the time)
             VBox dateBox = createDateBox(String.valueOf(dayOfMonth));
             calendarPane.add(dateBox, col, row);
             dayOfMonth++;
         }
 
-        while (dayOfMonth <= currentDate.lengthOfMonth()) {
-            row++;
-            for (int col = 0; col < 7 && dayOfMonth <= currentDate.lengthOfMonth(); col++) {
+        while (dayOfMonth <= currentDate.lengthOfMonth()) { // uses the method createDateBox to put the number associated with that day into the box respectively. For each month
+            row++; // starts from 2nd week (most of the time)
+            for (int col = 0; col < 7 && dayOfMonth <= currentDate.lengthOfMonth(); col++) { // for each week. stops when its less than length of the days of the week or months end apruptly
                 VBox dateBox = createDateBox(String.valueOf(dayOfMonth));
-                calendarPane.add(dateBox, col, row);
+                calendarPane.add(dateBox, col, row); // finds location of where box needs to be (vertically and horizontally and add it to GridPane) GridPane being almost like a full on 2d array
                 dayOfMonth++;
             }
         }
@@ -121,13 +119,13 @@ public class CalendarApp extends Application {
         BorderPane.setAlignment(calendarPane, Pos.CENTER);
     }
 
-    private VBox createDateBox(String date) {
+    private VBox createDateBox(String date) { // for each box and adds some styling
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
-        Label label = new Label(date);
+        Label label = new Label(date); // to be able to set the text (or this case label)
         vbox.getChildren().add(label);
-        vbox.setPrefSize(50, 50); // Set preferred size for each date box
-        vbox.setStyle("-fx-border-color: black; -fx-border-width: 1px;"); // Add border for styling
+        vbox.setPrefSize(300, 300); // i set this so that its appropriate for my mac. might change it to adjust in ratio with resolution
+        vbox.setStyle("-fx-border-color: black; -fx-border-width: 0.5px;"); // Add border for styling
         return vbox;
     }
 

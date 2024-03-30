@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a960b2d4-6e03-4f3d-96a1-030451e7db10" name="Changes" comment="Setting up the ground for the months. No events adding feature yet">
+    <list default="true" id="a960b2d4-6e03-4f3d-96a1-030451e7db10" name="Changes" comment="Added more comments and got rid of few useless lines&#10;ALso improved sizing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calendar/CalendarApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calendar/CalendarApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,18 +23,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPEN",
-      "author": "Velore9"
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;author&quot;: &quot;Velore9&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPEN",
-    "author": "Velore9"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;author&quot;: &quot;Velore9&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -54,6 +55,7 @@
 }</component>
   <component name="ProjectId" id="2eIAtbLs78BJHIYevkfIG0rek22" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -96,6 +98,9 @@
       <updated>1711581933401</updated>
       <workItem from="1711581934408" duration="3766000" />
       <workItem from="1711585786425" duration="441000" />
+      <workItem from="1711586237059" duration="286000" />
+      <workItem from="1711708412052" duration="1952000" />
+      <workItem from="1711788052629" duration="7223000" />
     </task>
     <task id="LOCAL-00001" summary="Setting up the ground for the months. No events adding feature yet">
       <option name="closed" value="true" />
@@ -105,7 +110,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711585184041</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="T3esting again">
+      <option name="closed" value="true" />
+      <created>1711586334170</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711586334170</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added more comments and got rid of few useless lines&#10;ALso improved sizing">
+      <option name="closed" value="true" />
+      <created>1711710353172</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711710353172</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +158,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Setting up the ground for the months. No events adding feature yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setting up the ground for the months. No events adding feature yet" />
+    <MESSAGE value="T3esting again" />
+    <MESSAGE value="Added more comments and got rid of few useless lines&#10;ALso improved sizing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more comments and got rid of few useless lines&#10;ALso improved sizing" />
   </component>
 </project>

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a960b2d4-6e03-4f3d-96a1-030451e7db10" name="Changes" comment="Added more comments and got rid of few useless lines&#10;ALso improved sizing">
+    <list default="true" id="a960b2d4-6e03-4f3d-96a1-030451e7db10" name="Changes" comment="Made the assignment input and accepted it. Can't do saves when you go to next month though">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/calendar/Assignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calendar/CalendarApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calendar/CalendarApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calendar/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calendar/HelloController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaFXApplication" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -100,7 +104,8 @@
       <workItem from="1711585786425" duration="441000" />
       <workItem from="1711586237059" duration="286000" />
       <workItem from="1711708412052" duration="1952000" />
-      <workItem from="1711788052629" duration="7223000" />
+      <workItem from="1711788052629" duration="7507000" />
+      <workItem from="1711841765977" duration="2454000" />
     </task>
     <task id="LOCAL-00001" summary="Setting up the ground for the months. No events adding feature yet">
       <option name="closed" value="true" />
@@ -126,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711710353172</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Made the assignment input and accepted it. Can't do saves when you go to next month though">
+      <option name="closed" value="true" />
+      <created>1711795841374</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711795841374</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +173,7 @@
     <MESSAGE value="Setting up the ground for the months. No events adding feature yet" />
     <MESSAGE value="T3esting again" />
     <MESSAGE value="Added more comments and got rid of few useless lines&#10;ALso improved sizing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more comments and got rid of few useless lines&#10;ALso improved sizing" />
+    <MESSAGE value="Made the assignment input and accepted it. Can't do saves when you go to next month though" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the assignment input and accepted it. Can't do saves when you go to next month though" />
   </component>
 </project>

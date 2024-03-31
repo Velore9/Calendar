@@ -15,17 +15,17 @@ import javafx.event.ActionEvent;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CalendarApp extends Application {
 
     private LocalDate currentDate; // to open up in the current month. I did nto use a calendar control only to get the values of the specified field and where it fits (e.g 4th falls on what day of week)
     private Label monthLabel;
-
+    private Map<LocalDate, List<Assignment>> assignmentsMap;
     @Override
     public void start(Stage primaryStage) {
         currentDate = LocalDate.now();
+        assignmentsMap = new HashMap<>();
 
         BorderPane root = new BorderPane();
         root.setPrefSize(600, 400);
@@ -39,15 +39,13 @@ public class CalendarApp extends Application {
         Button prevButton = new Button("Prev"); // last month
         prevButton.setOnAction(event -> {
             currentDate = currentDate.minusMonths(1);
-            updateCalendar();
-            populateCalendar(root);
+            updateCalendar(root);
         });
 
         Button nextButton = new Button("Next"); // next month
         nextButton.setOnAction(event -> {
             currentDate = currentDate.plusMonths(1);
-            updateCalendar();
-            populateCalendar(root);
+            updateCalendar(root);
         });
         navigationPane.getChildren().addAll(prevButton, nextButton); // put the info the buttons with the styling of the Hbox
 
@@ -77,13 +75,14 @@ public class CalendarApp extends Application {
         primaryStage.show();
 
         //intialises calendar or else first GUI will be empty
-        populateCalendar(root);
+        updateCalendar(root);
     }
 
 
 
-    private void updateCalendar() { // whenever u go to next month and then sets the month
+    private void updateCalendar(BorderPane root) { // whenever u go to next month and then sets the month
         monthLabel.setText(currentDate.getMonth().toString() + " " + currentDate.getYear());
+        populateCalendar(root);
     }
 
 
@@ -148,11 +147,20 @@ public class CalendarApp extends Application {
         vbox.setPrefSize(300, 300); // i set this so that its appropriate for my mac. might change it to adjust in ratio with resolution
         vbox.setStyle("-fx-border-color: black; -fx-border-width: 0.5px;"); // Add border for styling
 
+        LocalDate selectedDate = currentDate.withDayOfMonth(Integer.parseInt(date));
+        List<Assignment> assignments = assignmentsMap.getOrDefault(selectedDate, new ArrayList<>());
+
+        for (Assignment assignment : assignments) {
+            Label assignmentLabel = new Label(assignment.getText());
+            assignmentLabel.setStyle("-fx-padding: 5px; -fx-background-color: " + assignment.getColor()); // saving the color for next time it comes back
+            nestedVBox.getChildren().add(assignmentLabel);
+        }
+
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) { // do the method when the box is clicked
                 VBox clickedBox = (VBox) e.getSource();
-                displayInputWindow(clickedBox, nestedVBox);
+                displayInputWindow(clickedBox, nestedVBox, selectedDate);
             }
         };
         vbox.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -160,7 +168,7 @@ public class CalendarApp extends Application {
     }
 
 
-    private void displayInputWindow(VBox clickedBox, VBox nestedVBox) {
+    private void displayInputWindow(VBox clickedBox, VBox nestedVBox, LocalDate selectedDate) {
         // Create a new stage (window)
         Stage inputStage = new Stage();
         inputStage.initModality(Modality.APPLICATION_MODAL);
@@ -170,42 +178,35 @@ public class CalendarApp extends Application {
         TextField textField = new TextField();
         Button submitButton = new Button("Submit");
 
-        final ComboBox<String> priorityComboBox = new ComboBox();
-        priorityComboBox.getItems().addAll("High", "Normal", "Low");
-        priorityComboBox.setValue("Normal");
+        final ComboBox<String> priorityColor = new ComboBox();
+        priorityColor.getItems().addAll("High", "Normal", "Low");
+        priorityColor.setValue("Normal");
 
         GridPane priority = new GridPane();
         priority.setVgap(4);
         priority.setHgap(10);
         priority.add(new Label("Priority: "), 2, 0);
-        priority.add(priorityComboBox, 3, 0);
+        priority.add(priorityColor, 3, 0);
 
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String inputText = textField.getText();
-                String selectedPriority = priorityComboBox.getValue();
+                String selectedPriority = priorityColor.getValue();
 
+                Assignment assignment = new Assignment(inputText, getPriorityColor(selectedPriority));
 
-                // Set background color based on priority for nested VBox
-                switch (selectedPriority) {
-                    case "High":
-                        nestedVBox.setStyle("-fx-background-color: red; -fx-border-width: 0.5px;");
-                        break;
-                    case "Normal":
-                        nestedVBox.setStyle("-fx-background-color: yellow; -fx-border-width: 0.5px;");
-                        break;
-                    case "Low":
-                        nestedVBox.setStyle("-fx-background-color: green; -fx-border-width: 0.5px;");
-                        break;
-                    default:
-                        // Do nothing for other cases
-                }
+                Label assignmentLabel = new Label(inputText);
+                assignmentLabel.setStyle("-fx-padding: 5px; -fx-background-color: " + assignment.getColor()); // initialising the colors first time
+
 
                 // Set text in nested VBox
-                Label assignmentLabel = new Label(inputText);
-                assignmentLabel.setStyle("-fx-padding: 5px;");
-                nestedVBox.getChildren().setAll(assignmentLabel);
+                nestedVBox.getChildren().add(assignmentLabel);
+
+                if (!assignmentsMap.containsKey(selectedDate)) {
+                    assignmentsMap.put(selectedDate, new ArrayList<>());
+                }
+                assignmentsMap.get(selectedDate).add(assignment);
 
                 // Close the input window
                 inputStage.close();
@@ -225,7 +226,19 @@ public class CalendarApp extends Application {
         // Show the input window
         inputStage.showAndWait(); // Wait for the input window to close
     }
+
+    private String getPriorityColor(String priority) {
+        switch (priority) {
+            case "High":
+                return "red";
+            case "Low":
+                return "green";
+            default:
+                return "yellow";
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }
+
 }
